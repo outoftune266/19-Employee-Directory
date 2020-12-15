@@ -4,12 +4,15 @@ import Table from "../table/table";
 import API from "../../utils/API";
 
 class Container extends Component {
-  state = {};
+  state = {
+    employees: [],
+  };
 
   componentDidMount() {
     console.log("Component Mounted");
     this.getEmployees();
   }
+
   getEmployees = () => {
     API.getEmployees()
       .then((res) => {

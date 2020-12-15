@@ -8,7 +8,7 @@ function Table(props) {
     <div>
       <table>
         <thead>
-          <TableHead />
+          <TableHead sortNames={props.sortNames} />
         </thead>
         <tbody>
           {props.employees.map((employee) => (

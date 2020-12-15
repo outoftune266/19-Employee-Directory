@@ -1,7 +1,7 @@
 import React from "react";
 
-function Search() {
-  return <input type="text"></input>;
+function Search(props) {
+  return <input type="text" onChange={props.handleInputChange}></input>;
 }
 
 export default Search;

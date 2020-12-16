@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Search from "../search/search";
 import Table from "../table/table";
 import API from "../../utils/API";
+import "./style.css";
 
 class Container extends Component {
   state = {
@@ -69,7 +70,7 @@ class Container extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Search handleInputChange={this.handleInputChange} />
         <Table employees={this.state.employees} sortNames={this.sortNames} />
       </div>

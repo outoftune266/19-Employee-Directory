@@ -6,7 +6,7 @@ function Table(props) {
 
   return (
     <div>
-      <table>
+      <table className="container">
         <thead>
           <TableHead sortNames={props.sortNames} />
         </thead>

@@ -8,6 +8,8 @@ class Container extends Component {
     employees: [],
   };
 
+  initialEmployeeList;
+
   componentDidMount() {
     console.log("Component Mounted");
     this.getEmployees();
@@ -16,22 +18,33 @@ class Container extends Component {
   getEmployees = () => {
     API.getEmployees()
       .then((res) => {
-        console.log(res.data.results);
+        //console.log(res.data.results);
+        this.initialEmployeeList = res.data.results;
         this.setState({ employees: res.data.results });
       })
       .catch((err) => console.log(err));
   };
 
   handleInputChange = (e) => {
+    //console.log(this.initialEmployeeList);
     const searchName = e.target.value;
-    this.searchNames(searchName);
+    //console.log(searchName);
+    //console.log(typeof searchName);
+    if (searchName) {
+      this.searchNames(searchName);
+    } else if (!searchName) {
+      this.setState({ employees: this.initialEmployeeList });
+    }
   };
 
   searchNames = (searchName) => {
     console.log("searchNames funciton");
-    const filteredEmployees = this.state.employees.find((employee) =>
-      employee.name.first.includes(searchName)
-    );
+    const filteredEmployees = this.state.employees.filter((employee) => {
+      let uppercaseName = employee.name.first.toUpperCase();
+      let uppercaseSearchName = searchName.toUpperCase();
+      return uppercaseName.includes(uppercaseSearchName);
+    });
+    console.log(filteredEmployees);
     this.setState({ employees: filteredEmployees });
   };
 

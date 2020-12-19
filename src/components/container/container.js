@@ -41,9 +41,15 @@ class Container extends Component {
   searchNames = (searchName) => {
     console.log("searchNames funciton");
     const filteredEmployees = this.initialEmployeeList.filter((employee) => {
-      let uppercaseName = employee.name.first.toUpperCase();
+      let uppercaseFirstName = employee.name.first.toUpperCase();
       let uppercaseSearchName = searchName.toUpperCase();
-      return uppercaseName.includes(uppercaseSearchName);
+      if (
+        employee.name.first.toUpperCase().includes(uppercaseSearchName) ||
+        employee.name.last.toUpperCase().includes(uppercaseSearchName)
+      ) {
+        return employee;
+      }
+      //return uppercaseName.includes(uppercaseSearchName);
     });
     console.log(filteredEmployees);
     this.setState({ employees: filteredEmployees });
